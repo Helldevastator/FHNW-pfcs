@@ -1,4 +1,4 @@
-package ch.fhnw.pfcs.janfaessler.assignement_2; 
+package ch.fhnw.pfcs.janfaessler.assignment_2; 
   
 import com.jogamp.opengl.util.FPSAnimator; 
 

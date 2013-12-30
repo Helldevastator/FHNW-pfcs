@@ -1,4 +1,4 @@
-package ch.fhnw.pfcs.janfaessler.assignement_3;
+package ch.fhnw.pfcs.janfaessler.assignment_3;
 
 import java.awt.geom.Point2D;
 
