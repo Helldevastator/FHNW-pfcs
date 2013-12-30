@@ -73,7 +73,6 @@ public class Gyroscope implements GLEventListener, KeyListener {
 	}
 	
 	private void draw() {
-		// stab
 		gl.glPushMatrix();
 
 		drawStage(4);
@@ -129,7 +128,7 @@ public class Gyroscope implements GLEventListener, KeyListener {
 		gl.glPopMatrix();
 	}
 	
-	private void addWeight(double size, double 	thickness, double pos) {
+	private void addWeight(double size, double thickness, double pos) {
 		gl.glPushMatrix();
 		
 		gl.glTranslated(0, 0, pos);
