@@ -27,26 +27,9 @@ public class Gyroscope implements GLEventListener, KeyListener {
 	double omega = 3;
 	double dt = 0.01; 
 
-	// ------------------ Methoden --------------------
-	double[] cross(double[] u, double[] v) {
-		double n1 = u[1] * v[2] - u[2] * v[1];
-		double n2 = u[2] * v[0] - u[0] * v[2];
-		double n3 = u[0] * v[1] - u[1] * v[0];
-		double[] n = { n1, n2, n3 };
-		return n;
-	}
-
-	double[] normale(double[] A, double[] B, double[] C) {
-		double[] u = { B[0] - A[0], B[1] - A[1], B[2] - A[2] };
-		double[] v = { C[0] - A[0], C[1] - A[1], C[2] - A[2] };
-		double[] n = cross(u, v);
-		return n;
-	}
-
-	public Gyroscope() // Konstruktor
-	{
+	public Gyroscope() {
 		JFrame f = new JFrame("Gyroskop");
-		canvas = new GLCanvas(); // OpenGL-Window
+		canvas = new GLCanvas();
 		f.setSize(800, 600);
 		f.setBackground(Color.gray);
 		f.addKeyListener(this);
@@ -59,18 +42,15 @@ public class Gyroscope implements GLEventListener, KeyListener {
 		anim.start();
 	}
 
-	public static void main(String[] args) // main-Methode der Applikation
-	{
+	public static void main(String[] args) {
 		new Gyroscope();
 	}
-
-	// --------- OpenGL-Events -----------------------
 
 	public void init(GLAutoDrawable drawable) {
 		gl = drawable.getGL().getGL2();
 		gl.glClearColor(0f, 0f, 0f, 1.0f);
 		glut = new GLUT();
-		gl.glEnable(GL.GL_DEPTH_TEST);// z-Buffer aktivieren
+		gl.glEnable(GL.GL_DEPTH_TEST);
 		gl.glEnable(GLLightingFunc.GL_NORMALIZE);
 		gl.glEnable(GLLightingFunc.GL_LIGHT0);
 	}
