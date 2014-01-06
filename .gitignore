@@ -4,3 +4,13 @@
 .classpath
 
 .project
+/pfcs/nbproject/private/
+/nbproject/private/
+/build/
+*.prefs
+
+build.xml
+
+manifest.mf
+
+nbproject/*
