@@ -95,15 +95,13 @@ public class Pendel extends JFrame implements GLEventListener, KeyListener {
 	
 	@Override
 	public void init(GLAutoDrawable drawable) {		
-		GL gl0 = drawable.getGL();
-		GL2 gl = gl0.getGL2();
+		GL2 gl = drawable.getGL().getGL2();
 		gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	}
 
 	@Override
 	public void display(GLAutoDrawable drawable) {
-		GL gl0 = drawable.getGL();
-		GL2 gl = gl0.getGL2();
+		GL2 gl = drawable.getGL().getGL2();
 		gl.glClear(gl.GL_COLOR_BUFFER_BIT); // Bild loeschen
 		
 		// calculations

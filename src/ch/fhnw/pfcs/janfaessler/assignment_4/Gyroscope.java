@@ -180,9 +180,6 @@ public class Gyroscope implements GLEventListener, KeyListener {
 		case 'W':
 			omega = omega + 2;
 			break;
-		case 's':
-			omega = 0;
-			break;
 		}
 
 	}
