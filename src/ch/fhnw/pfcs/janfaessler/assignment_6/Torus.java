@@ -7,12 +7,12 @@ import java.awt.Color;
 import java.util.Arrays;
 import javax.media.opengl.GL2;
 
-public class Torrus extends AbstractBullet {
+public class Torus extends AbstractBullet {
     
     private static final double M = 1;
     private final double rBig, rLittle;
 
-    public Torrus(Vec3 pos, Vec3 angleSpeed, double v0, double a0, Vec2 size) {
+    public Torus(Vec3 pos, Vec3 angleSpeed, double v0, double a0, Vec2 size) {
         super(pos, angleSpeed, v0, a0);
         rBig = size.x;
         rLittle = size.y;

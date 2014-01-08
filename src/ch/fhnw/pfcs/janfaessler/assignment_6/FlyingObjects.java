@@ -21,49 +21,47 @@ import javax.swing.JFrame;
 
 public class FlyingObjects extends JFrame implements GLEventListener, KeyListener{
     
-    private static enum Type { Quader, Torrus }
+    private static enum Type { Quader, Torus }
 
-    private double viewportWidth = 250;
+    private final double viewportWidth = 250;
     
-    private float[] ambReflection =  { 0.6f, 0.6f, 0.6f, 1f} ;
-    private float[] diffReflection = { 0.6f, 0.6f, 0.6f, 1f} ;
-    private float[] specReflection = { 0.2f, 0.2f, 0.2f, 1f} ;
-    private float[] specExp = {20};
-    private float[] ambient = { 0.4f, 0.4f, 0.4f, 1f };
-    private float[] lightPos = { -10, 10, 10, 1f };
-    
-    private boolean shift = false;
+    private final float[] ambReflection =  { 0.6f, 0.6f, 0.6f, 1f} ;
+    private final float[] diffReflection = { 0.6f, 0.6f, 0.6f, 1f} ;
+    private final float[] specReflection = { 0.2f, 0.2f, 0.2f, 1f} ;
+    private final float[] specExp = {20};
+    private final float[] ambient = { 0.4f, 0.4f, 0.4f, 1f };
+    private final float[] lightPos = { -10, 10, 10, 1f };
     
     private final double dt = 0.01;                    // time steps 
-    private static Type objectType = Type.Torrus;      // Object Type
+    private static Type objectType = Type.Torus;       // Object Type
     private double elev = 10;                          // Elevation Camera
     private double azim = 40;                          // Azimut Camera
     private double v0 = 5;                             // shooting start speed 
     private double w = 45;                             // shooting angle 
-    private final Vec3 aV0 = new Vec3(2, 2, 2);     // starting angle speed
+    private final Vec3 aV0 = new Vec3(2, 2, 2);        // starting angle speed
     private final int bulletDelay = 10;                // delay of the bullets
-    private final Vec3 startPos = new Vec3(0,0,0);
-    private final Vec3 quaderSize = new Vec3(5,5,5);
-    private final Vec2 torrusSize = new Vec2(1, 4);
+    private final Vec3 startPos = new Vec3(0,0,0);     // start position
+    private final Vec3 quaderSize = new Vec3(5,5,5);   // quader dimension
+    private final Vec2 torusSize = new Vec2(1, 4);     // torus dimension
     
     private final List<AbstractBullet> bullets = new ArrayList<>();
     private int bulletCount = 0;
-    
+    private boolean shift = false;
 
     public static void main(String[] args) { new FlyingObjects(); }
     public FlyingObjects() {
-        this.setName("FlyingObjects");
-        this.setTitle("FlyingObjects");
-        this.setSize(800, 600);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.addKeyListener(this);
+        setName("FlyingObjects");
+        setTitle("FlyingObjects");
+        setSize(800, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        addKeyListener(this);
 
         GLCanvas canvas = new GLCanvas();
         canvas.addGLEventListener(this);
         canvas.addKeyListener(this);
-        this.add(canvas);
+        add(canvas);
         
-        this.setVisible(true);
+        setVisible(true);
         
         FPSAnimator anim = new FPSAnimator(canvas, 100, true);
         anim.start();
@@ -114,7 +112,7 @@ public class FlyingObjects extends JFrame implements GLEventListener, KeyListene
             if (objectType.equals(Type.Quader))
                 bullets.add(new Quader(startPos.clone(), aV0.clone(), v0, w, quaderSize));
             else
-                bullets.add(new Torrus(startPos.clone(), aV0.clone(), v0, w, torrusSize));
+                bullets.add(new Torus(startPos.clone(), aV0.clone(), v0, w, torusSize));
         }
         
         Iterator<AbstractBullet> it = bullets.iterator();
@@ -157,7 +155,7 @@ public class FlyingObjects extends JFrame implements GLEventListener, KeyListene
                 objectType = Type.Quader;
                 break;
             case KeyEvent.VK_2:
-                objectType = Type.Torrus;
+                objectType = Type.Torus;
                 break;
             case KeyEvent.VK_UP:
                 elev += 2;

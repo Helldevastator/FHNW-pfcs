@@ -23,7 +23,7 @@ public class Particle {
 
     public void draw(GL2 gl) {
         gl.glColor3d(color.getRed(), color.getGreen(), color.getBlue());
-        Draw.smallCircle(gl, RADIUS, x, y);
+        Draw.smallCircle2d(gl, RADIUS, x, y);
     }
     
     public void move(Dynamics d) {

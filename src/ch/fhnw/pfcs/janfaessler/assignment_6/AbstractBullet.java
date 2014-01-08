@@ -2,23 +2,20 @@ package ch.fhnw.pfcs.janfaessler.assignment_6;
 
 import ch.fhnw.pfcs.janfaessler.util.Draw;
 import ch.fhnw.pfcs.janfaessler.util.Dynamics;
-import ch.fhnw.pfcs.janfaessler.util.Dynamics.Type;
 import ch.fhnw.pfcs.janfaessler.util.Quaternion;
 import ch.fhnw.pfcs.janfaessler.util.Vec3;
 import java.awt.Color;
-import java.util.Arrays;
 import javax.media.opengl.GL2;
 
 public abstract class AbstractBullet {
     
     private final Vec3 a = new Vec3(0, -Draw.getGravity(), 0);
     
-    private Vec3 pos;       // position
-    private Vec3 wv;        // angle speed
-    
-    private Vec3 v;         // speed
-    private Quaternion o;   // orientation
-    private Quaternion q;   // calculation quaternion
+    private final Vec3 pos;       // position
+    private Vec3 wv;              // angle speed
+    private final Vec3 v;         // speed
+    private final Quaternion o;   // orientation
+    private Quaternion q;         // calculation quaternion
     
     private final RotateDynamics rotateDyn;
     Color color;
@@ -61,11 +58,8 @@ public abstract class AbstractBullet {
     
     public void update(double dt) {
         // rotate
-        
         double[] rotate = {wv.x, wv.y, wv.z, q.scal, q.vec.x, q.vec.y, q.vec.z};
-        
         rotate = rotateDyn.move(rotate, dt);     
-        
         wv = new Vec3(rotate[0], rotate[1], rotate[2]);
         q = new Quaternion(rotate[3], rotate[4], rotate[5], rotate[6]);
         q = q.norm();

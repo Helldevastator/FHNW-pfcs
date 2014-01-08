@@ -2,7 +2,6 @@ package ch.fhnw.pfcs.janfaessler.util;
 
 import java.awt.geom.Point2D;
 import javax.media.opengl.GL;
-
 import javax.media.opengl.GL2;
 
 public class Draw {
@@ -15,11 +14,15 @@ public class Draw {
     public static double getGravity() { return g; }
     public static double getTimeStep() { return dt; }
         
-    public static void line(GL2 gl, Vec2 start, Vec2 end) {
-            gl.glBegin(GL2.GL_LINES);
-            gl.glVertex2d(start.x, start.y);
-            gl.glVertex2d(end.x,     end.y);
-            gl.glEnd();
+    public static void line2d(GL2 gl, Vec2 start, Vec2 end) {
+        gl.glBegin(GL2.GL_LINES);
+        gl.glVertex2d(start.x, start.y);
+        gl.glVertex2d(end.x,     end.y);
+        gl.glEnd();
+    }
+    
+    public static void line2d(GL2 gl, double s) {
+        line2d(gl, new Vec2(0,0), new Vec2(s, 0));
     }
     
     public static void line3d(GL2 gl, Vec3 start, Vec3 end) {
@@ -29,16 +32,9 @@ public class Draw {
         gl.glEnd();
     }
 
-    public static void line(GL2 gl, double s) {
-            gl.glBegin(GL2.GL_LINES);
-            gl.glVertex2d(  0, 0);
-            gl.glVertex2d(  s, 0);
-            gl.glEnd();
-    }
-    
-    public static void axes(GL2 gl) { 
-    	line(gl, new Vec2(-100,    0), new Vec2(100,   0));
-    	line(gl, new Vec2(   0, -100), new Vec2(  0, 100));
+    public static void axes2d(GL2 gl) { 
+    	line2d(gl, new Vec2(-100,    0), new Vec2(100,   0));
+    	line2d(gl, new Vec2(   0, -100), new Vec2(  0, 100));
     } 
     public static void axes3d(GL2 gl) {
         line3d(gl, new Vec3(0, 0, 0), new Vec3(100,0,0));
@@ -46,7 +42,7 @@ public class Draw {
         line3d(gl, new Vec3(0, 0, 0), new Vec3(0,0,100));
     }
 
-    public static void rect(GL2 gl, Point2D.Double p1, Point2D.Double p2, boolean fill) {
+    public static void rect2d(GL2 gl, Point2D.Double p1, Point2D.Double p2, boolean fill) {
         gl.glBegin(fill ? GL2.GL_POLYGON : GL2.GL_LINE_LOOP);
         gl.glVertex2d(p1.x, p1.y);
         gl.glVertex2d(p2.x, p1.y);
@@ -56,9 +52,9 @@ public class Draw {
     }
     
     public static void angle(GL2 gl, Vec2 pos, double angle, double size) {
-    	line(gl, new Vec2(pos.x,pos.y - size), new Vec2(pos.x, pos.y+size));
-    	line(gl, new Vec2(pos.x - size, pos.y), new Vec2(pos.x+size, pos.y));
-        line(gl, pos, new Vec2(pos.x + size * Math.cos(Math.toRadians(angle)), pos.y + size * Math.sin(Math.toRadians(angle))));
+    	line2d(gl, new Vec2(pos.x,pos.y - size), new Vec2(pos.x, pos.y+size));
+    	line2d(gl, new Vec2(pos.x - size, pos.y), new Vec2(pos.x+size, pos.y));
+        line2d(gl, pos, new Vec2(pos.x + size * Math.cos(Math.toRadians(angle)), pos.y + size * Math.sin(Math.toRadians(angle))));
     	gl.glBegin(GL.GL_LINE_STRIP);
         double dt = Math.toRadians(angle) / 10;
         for (int i = 0; i < 10; i++) {
@@ -68,28 +64,37 @@ public class Draw {
         gl.glEnd();
     }
     
-    public static void smallCircle(GL2 gl, double r, double x, double y) {
-        circle(gl, r, x, y, 5, true);
+    public static void smallCircle2d(GL2 gl, double r, double x, double y) {
+        circle2d(gl, r, x, y, 5, true);
     }
     
-    public static void circle(GL2 gl, double r, double x, double y) {
-        circle(gl, r, x, y, 40, true);
+    public static void smallCircle2d(GL2 gl, double r, double x, double y, boolean fill) {
+        circle2d(gl, r, x, y, 5, fill);
     }
     
-    public static void smallCircle(GL2 gl, double r, double x, double y, boolean fill) {
-        circle(gl, r, x, y, 5, fill);
+    public static void circle2d(GL2 gl, double r, double x, double y) {
+        circle2d(gl, r, x, y, 40, true);
     }
     
-    public static void circle(GL2 gl, double r, double x, double y, boolean fill) {
-        circle(gl, r, x, y, 40, fill);
+    public static void circle2d(GL2 gl, double r, double x, double y, boolean fill) {
+        circle2d(gl, r, x, y, 40, fill);
     }
     
-    public static void circle(GL2 gl, double r, double x, double y, int circlePoints, boolean fill) { 
+    public static void circle2d(GL2 gl, double r, double x, double y, int circlePoints, boolean fill) { 
         double circleStepSize = 2.0 * Math.PI / circlePoints;
         gl.glBegin(fill ? gl.GL_POLYGON : gl.GL_LINE_LOOP);
         for (int i = 0; i < circlePoints; i++)
             gl.glVertex2d(x + r * Math.cos(i * circleStepSize), y + r * Math.sin(i * circleStepSize));
         gl.glEnd();
     } 
+    
+    public static void quad3d(GL2 gl, Vec3 A, Vec3 B, Vec3 C, Vec3 D) {
+        gl.glBegin(GL2.GL_QUADS);
+        gl.glVertex3d(A.x, A.y, A.z);
+        gl.glVertex3d(B.x, B.y, B.z);
+        gl.glVertex3d(C.x, C.y, C.z);
+        gl.glVertex3d(D.x, D.y, D.z);
+        gl.glEnd();
+    }
     
 }

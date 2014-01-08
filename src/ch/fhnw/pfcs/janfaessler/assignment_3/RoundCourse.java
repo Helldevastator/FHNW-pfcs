@@ -25,35 +25,35 @@ public class RoundCourse implements Course {
             gl.glColor3d(0.75, 0.75, 0.75);
 
             for (int i = 0;  i < 30; i++) {
-                    Draw.line(gl, s);
+                    Draw.line2d(gl, s);
                     gl.glTranslated(s, 0, 0);
                     gl.glRotated(-phi, 0, 0, 1);
                     phi += dphi;
             }
             for (int i = 0;  i < 30; i++) {
-                    Draw.line(gl, s);
+                    Draw.line2d(gl, s);
                     gl.glTranslated(s, 0, 0);
                     gl.glRotated(-phi, 0, 0, 1);
             }
             for (int i = 0;  i < 30; i++) {
-                    Draw.line(gl, s);
+                    Draw.line2d(gl, s);
                     gl.glTranslated(s, 0, 0);
                     gl.glRotated(-phi, 0, 0, 1);
                     phi -= dphi;
             }
             for (int i = 0;  i < 30; i++) {
-                    Draw.line(gl, s);
+                    Draw.line2d(gl, s);
                     gl.glTranslated(s, 0, 0);
                     gl.glRotated(-phi, 0, 0, 1);
                     phi += dphi;
             }
             for (int i = 0;  i < 30; i++) {
-                    Draw.line(gl, s);
+                    Draw.line2d(gl, s);
                     gl.glTranslated(s, 0, 0);
                     gl.glRotated(-phi, 0, 0, 1);
             }
             for (int i = 0;  i < 30; i++) {
-                    Draw.line(gl, s);
+                    Draw.line2d(gl, s);
                     gl.glTranslated(s, 0, 0);
                     gl.glRotated(-phi, 0, 0, 1);
                     phi -= dphi;

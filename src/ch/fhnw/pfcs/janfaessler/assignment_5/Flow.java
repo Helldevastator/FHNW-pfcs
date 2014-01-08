@@ -78,7 +78,7 @@ public class Flow implements GLEventListener, KeyListener {
             if (p.getX() > right) it.remove();
         }
         gl.glColor3d(color.getRed(), color.getGreen(), color.getBlue());
-        Draw.circle(gl, r, 0, 0);
+        Draw.circle2d(gl, r, 0, 0);
     }
 
     @Override

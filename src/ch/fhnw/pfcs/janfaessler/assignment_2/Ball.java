@@ -53,7 +53,7 @@ public class Ball {
         }
     	lifeTime++;
     	
-        Draw.circle(gl, r * zoom, position.x, position.y, true); 
+        Draw.circle2d(gl, r * zoom, position.x, position.y, true); 
     } 
     
     public double getX()         { return position.x; }

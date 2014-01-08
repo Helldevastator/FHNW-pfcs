@@ -93,17 +93,17 @@ public class Pendel extends JFrame implements GLEventListener, KeyListener {
         // draw axes
         if (showAxes) {
             gl.glColor3d(0.5, 0.5, 0.5);
-            Draw.axes(gl);
+            Draw.axes2d(gl);
         }
 
         // draw helper circle/ball
         if (showHelperRotator) {
             gl.glColor3d(0.3, 0.3, 0.3); 
-            Draw.circle(gl, cr, 0, 0, nPkte, false);
+            Draw.circle2d(gl, cr, 0, 0, nPkte, false);
             gl.glColor3d(0, 0, 1); 
-            Draw.circle(gl, br, rad * Math.cos(wt), 0, nPkte, true);
+            Draw.circle2d(gl, br, rad * Math.cos(wt), 0, nPkte, true);
             gl.glColor3d(1, 0, 0); 
-            Draw.circle(gl, br, rad * Math.cos(wt), y + rad * Math.sin(wt), nPkte, true);
+            Draw.circle2d(gl, br, rad * Math.cos(wt), y + rad * Math.sin(wt), nPkte, true);
         }
 
         // draw spring
@@ -112,7 +112,7 @@ public class Pendel extends JFrame implements GLEventListener, KeyListener {
 
         // draw ball
         gl.glColor3d(1, 1, 1); 
-        Draw.circle(gl, br, x, yr, nPkte, true);
+        Draw.circle2d(gl, br, x, yr, nPkte, true);
 
 
     }

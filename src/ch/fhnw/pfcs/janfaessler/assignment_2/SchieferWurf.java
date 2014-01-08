@@ -69,7 +69,7 @@ public class SchieferWurf extends JFrame implements GLEventListener, KeyListener
         // draw axes
         gl.glTranslated(0, -25, 0); 
         gl.glColor3d(0.5, 0.5, 0.5); 
-        Draw.line(gl,new Vec2(-viewportWidth, 0), new Vec2(viewportWidth, 0));
+        Draw.line2d(gl,new Vec2(-viewportWidth, 0), new Vec2(viewportWidth, 0));
         
         // draw ball
         gl.glColor3d(1, 1, 1); 

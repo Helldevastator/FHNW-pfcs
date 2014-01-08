@@ -140,11 +140,11 @@ public class Car {
             graphics.glRotated(angleCar, 0, 0, 1);
 
             // draw body
-            Draw.rect(graphics, new Point2D.Double(-carLenght, carWidth), new Point2D.Double(carLenght, -carWidth), true);
+            Draw.rect2d(graphics, new Point2D.Double(-carLenght, carWidth), new Point2D.Double(carLenght, -carWidth), true);
 
             // draw axis
-            Draw.line(graphics, new Vec2(-axisOffsetX, axisLenght), new Vec2(-axisOffsetX, -axisLenght));
-            Draw.line(graphics, new Vec2(axisOffsetX, axisLenght),  new Vec2(axisOffsetX, -axisLenght));
+            Draw.line2d(graphics, new Vec2(-axisOffsetX, axisLenght), new Vec2(-axisOffsetX, -axisLenght));
+            Draw.line2d(graphics, new Vec2(axisOffsetX, axisLenght),  new Vec2(axisOffsetX, -axisLenght));
 
             // draw weels
             drawWeel(new Point2D.Double(-axisOffsetX,  axisLenght+wheelWidth),           0);
@@ -163,7 +163,7 @@ public class Car {
             graphics.glRotated(angle, 0, 0, 1);
 
             // draw weel
-            Draw.rect(graphics, new Point2D.Double(-wheelLenght, wheelWidth), new Point2D.Double(wheelLenght, -wheelWidth), true);
+            Draw.rect2d(graphics, new Point2D.Double(-wheelLenght, wheelWidth), new Point2D.Double(wheelLenght, -wheelWidth), true);
 
             graphics.glPopMatrix();
     }
