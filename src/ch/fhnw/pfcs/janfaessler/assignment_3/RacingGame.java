@@ -1,5 +1,6 @@
 package ch.fhnw.pfcs.janfaessler.assignment_3;
 
+import ch.fhnw.pfcs.janfaessler.util.Draw;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
@@ -95,7 +96,7 @@ public class RacingGame extends JFrame implements GLEventListener, KeyListener {
         gl.glPushMatrix();
         gl.glColor3d(1,1,1);
         gl.glTranslated(left + 2.5, top -4, 0);
-        DrawUtils.drawRect(gl, new Point2D.Double(0,0), new Point2D.Double(width + 0.1, 2.5), false);
+        Draw.rect(gl, new Point2D.Double(0,0), new Point2D.Double(width + 0.1, 2.5), false);
         double value = car.getCentripetalForce() * width / maxCentripetalForce;
         if (car.getCentripetalForce() > maxCentripetalForce) {
         	value = width ;
@@ -103,7 +104,7 @@ public class RacingGame extends JFrame implements GLEventListener, KeyListener {
         } else {
         	gl.glColor3d(0,1,0);
         }
-        DrawUtils.drawRect(gl, new Point2D.Double(0.1, 0.1), new Point2D.Double(value, 2.5), true);
+        Draw.rect(gl, new Point2D.Double(0.1, 0.1), new Point2D.Double(value, 2.5), true);
         gl.glPopMatrix();
 	}
 

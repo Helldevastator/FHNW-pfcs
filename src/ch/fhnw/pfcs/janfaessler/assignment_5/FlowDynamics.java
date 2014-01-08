@@ -1,5 +1,7 @@
 package ch.fhnw.pfcs.janfaessler.assignment_5;
 
+import ch.fhnw.pfcs.janfaessler.util.Dynamics;
+
 public class FlowDynamics extends Dynamics {
     
     private final double r2;

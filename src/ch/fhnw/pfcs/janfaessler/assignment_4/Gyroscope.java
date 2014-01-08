@@ -20,7 +20,7 @@ public class Gyroscope implements GLEventListener, KeyListener {
 	double near = -100, far = 100;
 	GLUT glut;
 	GL2 gl;
-	double elev = 10;
+	double elev = -90;
 	double azim = 40;
 	double dist = 4;
 	double phi = 60;
@@ -64,8 +64,8 @@ public class Gyroscope implements GLEventListener, KeyListener {
 		gl.glEnable(GLLightingFunc.GL_COLOR_MATERIAL);
 		
 		gl.glLoadIdentity();
-
-		gl.glRotated(-90, 1, 0, 0);
+                
+                gl.glRotated(-90, 1, 0, 0);
 		
 		phi = (phi + omega * dt) % 360;
 		draw();
@@ -100,7 +100,7 @@ public class Gyroscope implements GLEventListener, KeyListener {
 	}
 
 	private void rotateCam(double elev, double azim) {
-		gl.glRotated(elev-90, 1, 0, 0);
+		gl.glRotated(elev, 1, 0, 0);
 		gl.glRotated(-azim, 0, 1, 0);
 	}
 
@@ -160,24 +160,24 @@ public class Gyroscope implements GLEventListener, KeyListener {
 		int key = e.getKeyCode();
 		char key2 = e.getKeyChar();
 		switch (key) {
-		case KeyEvent.VK_UP:
+                    case KeyEvent.VK_UP:
 			elev = elev - 3;
 			break;
-		case KeyEvent.VK_DOWN:
+                    case KeyEvent.VK_DOWN:
 			elev = elev + 3;
 			break;
-		case KeyEvent.VK_LEFT:
+                    case KeyEvent.VK_LEFT:
 			azim = azim - 3;
 			break;
-		case KeyEvent.VK_RIGHT:
+                    case KeyEvent.VK_RIGHT:
 			azim = azim + 3;
 			break;
 		}
 		switch (key2) {
-		case 'w':
+                    case 'w':
 			omega = omega - 2;
 			break;
-		case 'W':
+                    case 'W':
 			omega = omega + 2;
 			break;
 		}

@@ -1,5 +1,6 @@
 package ch.fhnw.pfcs.janfaessler.assignment_5;
 
+import ch.fhnw.pfcs.janfaessler.util.Draw;
 import javax.swing.JFrame;
 
 import java.awt.Color;
@@ -14,7 +15,6 @@ import javax.media.opengl.GL2GL3;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.awt.GLCanvas;
-import javax.media.opengl.fixedfunc.GLLightingFunc;
 import javax.media.opengl.fixedfunc.GLMatrixFunc;
 
 import com.jogamp.opengl.util.FPSAnimator;
@@ -78,7 +78,7 @@ public class Flow implements GLEventListener, KeyListener {
             if (p.getX() > right) it.remove();
         }
         gl.glColor3d(color.getRed(), color.getGreen(), color.getBlue());
-        DrawUtils.drawCircle(gl, r, 0, 0);
+        Draw.circle(gl, r, 0, 0);
     }
 
     @Override

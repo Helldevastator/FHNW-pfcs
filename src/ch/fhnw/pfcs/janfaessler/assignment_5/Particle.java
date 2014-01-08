@@ -1,4 +1,6 @@
 package ch.fhnw.pfcs.janfaessler.assignment_5;
+import ch.fhnw.pfcs.janfaessler.util.Draw;
+import ch.fhnw.pfcs.janfaessler.util.Dynamics;
 import javax.media.opengl.GL2;
 
 import com.jogamp.opengl.util.gl2.GLUT;
@@ -21,7 +23,7 @@ public class Particle {
 
     public void draw(GL2 gl) {
         gl.glColor3d(color.getRed(), color.getGreen(), color.getBlue());
-        DrawUtils.drawCircle(gl, RADIUS, x, y);
+        Draw.smallCircle(gl, RADIUS, x, y);
     }
     
     public void move(Dynamics d) {

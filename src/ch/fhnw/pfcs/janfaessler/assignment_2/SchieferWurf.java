@@ -1,9 +1,10 @@
 package ch.fhnw.pfcs.janfaessler.assignment_2; 
   
+import ch.fhnw.pfcs.janfaessler.util.Draw;
+import ch.fhnw.pfcs.janfaessler.util.Vec2;
 import com.jogamp.opengl.util.FPSAnimator; 
 
 import java.awt.event.*; 
-import java.awt.geom.Point2D;
 import java.util.ArrayList; 
 
 import javax.media.opengl.*;
@@ -12,24 +13,24 @@ import javax.swing.JFrame;
   
 public class SchieferWurf extends JFrame implements GLEventListener, KeyListener { 
 
-	private static final long serialVersionUID = -4760225131061774357L;
-	
-	ArrayList<Ball> balls = new ArrayList<Ball>(); 
-    
-	private double v0 = 20; // start speed 
+    private static final long serialVersionUID = -4760225131061774357L;
+
+    ArrayList<Ball> balls = new ArrayList<>(); 
+
+    private double v0 = 20; // start speed 
     private double w = 45; // angle 
-    private Point2D.Double startPos = new Point2D.Double(-30, 10);
+    private final Vec2 startPos = new Vec2(-30, 10);
     
     private double frames = 0; // number of time steps 
     private double delay = 10; // time delay 
     
-    private double viewportWidth = 40;
+    private final double viewportWidth = 40;
     
     private boolean shift = false;
     
     
     public static void main(String[] args) { 
-        new SchieferWurf(); 
+        SchieferWurf schieferWurf = new SchieferWurf(); 
     } 
 
     public SchieferWurf() { 
@@ -50,13 +51,15 @@ public class SchieferWurf extends JFrame implements GLEventListener, KeyListener
         
     } 
 
-    @Override public void init(GLAutoDrawable drawable) { 
+    @Override 
+    public void init(GLAutoDrawable drawable) { 
         GL gl0 = drawable.getGL(); 
         GL2 gl = gl0.getGL2(); 
         gl.glClearColor(0.0f, 0.0f, 1.0f, 1.0f); 
     } 
   
-    @Override public void display(GLAutoDrawable drawable) { 
+    @Override 
+    public void display(GLAutoDrawable drawable) { 
         GL gl0 = drawable.getGL(); 
         GL2 gl = gl0.getGL2(); 
         gl.glClear(GL2.GL_COLOR_BUFFER_BIT); 
@@ -66,7 +69,7 @@ public class SchieferWurf extends JFrame implements GLEventListener, KeyListener
         // draw axes
         gl.glTranslated(0, -25, 0); 
         gl.glColor3d(0.5, 0.5, 0.5); 
-        DrawUtils.drawLine(gl,new Point2D.Double(-viewportWidth, 0), new Point2D.Double(viewportWidth, 0));
+        Draw.line(gl,new Vec2(-viewportWidth, 0), new Vec2(viewportWidth, 0));
         
         // draw ball
         gl.glColor3d(1, 1, 1); 
@@ -84,29 +87,33 @@ public class SchieferWurf extends JFrame implements GLEventListener, KeyListener
         		balls.remove(i);
         
         gl.glColor3d(0.75, 0.75, 0.75); 
-        DrawUtils.drawAngle(gl, startPos, w, 2);
+        Draw.angle(gl, startPos, w, 2);
 
         frames++; 
     } 
   
-    @Override public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
-            GL2 gl = drawable.getGL().getGL2();
-            gl.glViewport(0, 0, width, height);
-            double aspect = (double) height / width;
-            double left = -viewportWidth;
-            double right = viewportWidth;
-            double bottom = left * aspect;
-            double top = right * aspect;
-            double near = -100, far = 100;
-            gl.glMatrixMode(GL2.GL_PROJECTION);
-            gl.glLoadIdentity();
-            gl.glOrtho(left, right, bottom, top, near, far);
-        }
+    @Override 
+    public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
+        GL2 gl = drawable.getGL().getGL2();
+        gl.glViewport(0, 0, width, height);
+        double aspect = (double) height / width;
+        double left = -viewportWidth;
+        double right = viewportWidth;
+        double bottom = left * aspect;
+        double top = right * aspect;
+        double near = -100, far = 100;
+        gl.glMatrixMode(GL2.GL_PROJECTION);
+        gl.glLoadIdentity();
+        gl.glOrtho(left, right, bottom, top, near, far);
+    }
   
-    @Override public void dispose(GLAutoDrawable drawable) {  } 
+    @Override 
+    public void dispose(GLAutoDrawable drawable) {  } 
   
-    @Override public void keyTyped(KeyEvent e) {  } 
-    @Override public void keyPressed(KeyEvent e) { 
+    @Override 
+    public void keyTyped(KeyEvent e) {  } 
+    @Override 
+    public void keyPressed(KeyEvent e) { 
         switch (e.getKeyCode()) { 
             case KeyEvent.VK_ESCAPE: System.exit(0);    break;  
             case KeyEvent.VK_SHIFT:
@@ -153,9 +160,10 @@ public class SchieferWurf extends JFrame implements GLEventListener, KeyListener
             	System.out.println("delay changed: "+delay);
         } 
     }
-    @Override public void keyReleased(KeyEvent e) { 
+    @Override 
+    public void keyReleased(KeyEvent e) { 
     	switch (e.getKeyCode()) { 
-    	case KeyEvent.VK_SHIFT:
+            case KeyEvent.VK_SHIFT:
         	shift = false;
         	break;
     	}

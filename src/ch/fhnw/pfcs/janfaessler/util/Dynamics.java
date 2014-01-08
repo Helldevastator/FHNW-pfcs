@@ -1,6 +1,8 @@
-package ch.fhnw.pfcs.janfaessler.assignment_5;
+package ch.fhnw.pfcs.janfaessler.util;
 
 public abstract class Dynamics {
+    
+    public static double g = Draw.getGravity();
     
     public static enum Type { Euler, Runge }
     

@@ -1,13 +1,12 @@
 package ch.fhnw.pfcs.janfaessler.assignment_3;
 
-import java.awt.geom.Point2D;
-
+import ch.fhnw.pfcs.janfaessler.util.Vec2;
 
 public interface Course {
 	
 	public void draw();
 	
-	public Point2D.Double getStartPosition();
+	public Vec2 getStartPosition();
 	
 	public double getStartAngle();
 
