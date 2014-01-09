@@ -4,6 +4,8 @@ import ch.fhnw.pfcs.janfaessler.util.Draw;
 import ch.fhnw.pfcs.janfaessler.util.Vec2;
 import ch.fhnw.pfcs.janfaessler.util.Vec3;
 import com.jogamp.opengl.util.FPSAnimator;
+import com.jogamp.opengl.util.awt.TextRenderer;
+import java.awt.Font;
 import java.util.List;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -47,6 +49,8 @@ public class FlyingObjects extends JFrame implements GLEventListener, KeyListene
     private final List<AbstractBullet> bullets = new ArrayList<>();
     private int bulletCount = 0;
     private boolean shift = false;
+    
+    private TextRenderer renderer;
 
     public static void main(String[] args) { new FlyingObjects(); }
     public FlyingObjects() {
@@ -87,6 +91,8 @@ public class FlyingObjects extends JFrame implements GLEventListener, KeyListene
         gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_DIFFUSE, diffReflection, 0);
         gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_SPECULAR, specReflection, 0);
         gl.glMaterialfv(GL.GL_FRONT, GLLightingFunc.GL_SHININESS,specExp, 0);
+        
+        renderer = new TextRenderer(new Font("Arial", Font.BOLD, 10));
     }
 
     @Override
@@ -123,6 +129,10 @@ public class FlyingObjects extends JFrame implements GLEventListener, KeyListene
             if (b.getLiveTime() == 0) it.remove();
         }
         
+         // draw car info
+        renderer.beginRendering(glad.getWidth(), glad.getHeight());
+        renderer.draw("shooting: [speed: "+v0+" angle: "+w+"] angle speed: [x:"+aV0.x+" y:"+aV0.y+" z:"+aV0.z+"]", 10, 20);
+        renderer.endRendering();
     }
     
     private void rotateCam(GL2 gl, double elev, double azim) {
@@ -139,7 +149,7 @@ public class FlyingObjects extends JFrame implements GLEventListener, KeyListene
         double right = viewportWidth;
         double bottom = left * aspect;
         double top = right * aspect;
-        double near = -(viewportWidth), far = viewportWidth*3;
+        double near = -(viewportWidth*2), far = viewportWidth*3;
         gl.glMatrixMode(GL2.GL_PROJECTION);
         gl.glLoadIdentity();
         gl.glOrtho(left, right, bottom, top, near, far);
