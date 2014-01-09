@@ -19,15 +19,6 @@ public class Quaternion {
         return new Quaternion(scal/abs, vec.x/abs, vec.y/abs, vec.z/abs);
     }
     
-    public void addQuaternion(Quaternion q) {
-        Vec3 vec = q.vec.norm();
-        
-        scal = Math.acos(q.scal) * 2;
-        vec.x += vec.x;
-        vec.y += vec.y;
-        vec.z += vec.z;
-    }
-    
     @Override
     public String toString() {
         return "q["+scal+","+vec+"]";

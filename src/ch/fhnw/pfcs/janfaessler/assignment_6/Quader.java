@@ -1,10 +1,13 @@
 package ch.fhnw.pfcs.janfaessler.assignment_6;
 
-import ch.fhnw.pfcs.janfaessler.util.Draw;
 import ch.fhnw.pfcs.janfaessler.util.Vec3;
+
 import java.awt.Color;
 import java.util.Arrays;
+
 import javax.media.opengl.GL2;
+
+import com.jogamp.opengl.util.gl2.GLUT;
 
 public class Quader extends AbstractBullet {
     
@@ -29,22 +32,8 @@ public class Quader extends AbstractBullet {
     @Override
     public void draw(GL2 gl) {
         super.prepareDraw(gl);
-        
-        Vec3 A = new Vec3(a/2, 0, b/2);
-   	Vec3 B = new Vec3(a/2, 0, -b/2);
-   	Vec3 C = new Vec3(a/2, c, -b/2);
-   	Vec3 D = new Vec3(a/2, c, b/2);
-   	Vec3 E = new Vec3(-a/2, 0, b/2);
-   	Vec3 F = new Vec3(-a/2, 0, -b/2);
-   	Vec3 G = new Vec3(-a/2, c, b/2);
-   	Vec3 H = new Vec3(-a/2, c, -b/2);  
-        
-        Draw.quad3d(gl, A, D, G, E); // front
-        Draw.quad3d(gl, E, F, H, G); // right
-        Draw.quad3d(gl, B, C, H, F); // back
-        Draw.quad3d(gl, A, B, C, D); // left
-        Draw.quad3d(gl, D, C, H, G); // top
-        Draw.quad3d(gl, A, B, F, E); // bottom
+        gl.glScaled(a, b, c);
+        (new GLUT()).glutSolidCube(1);
         
         super.finishDraw(gl);
     }

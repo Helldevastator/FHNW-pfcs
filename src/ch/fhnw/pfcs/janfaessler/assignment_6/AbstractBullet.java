@@ -4,7 +4,9 @@ import ch.fhnw.pfcs.janfaessler.util.Draw;
 import ch.fhnw.pfcs.janfaessler.util.Dynamics;
 import ch.fhnw.pfcs.janfaessler.util.Quaternion;
 import ch.fhnw.pfcs.janfaessler.util.Vec3;
+
 import java.awt.Color;
+
 import javax.media.opengl.GL2;
 
 public abstract class AbstractBullet {
@@ -14,7 +16,7 @@ public abstract class AbstractBullet {
     private final Vec3 pos;       // position
     private Vec3 wv;              // angle speed
     private final Vec3 v;         // speed
-    private final Quaternion o;   // orientation
+    private Quaternion o;   // orientation
     private Quaternion q;         // calculation quaternion
     
     private final RotateDynamics rotateDyn;
@@ -44,12 +46,12 @@ public abstract class AbstractBullet {
     }
     
     public abstract void draw(GL2 gl);
-    
+    	
     protected void prepareDraw(GL2 gl) {
         gl.glPushMatrix();
         gl.glTranslated(pos.x, pos.y, pos.z);
         gl.glRotated(Math.toDegrees(o.scal), o.vec.x, o.vec.y, o.vec.z);
-        gl.glColor3d(color.getRed(), color.getGreen(), color.getBlue());
+        gl.glColor3d(color.getRed()/255.0, color.getGreen()/255.0,color.getBlue()/255.0);
     }
     
     protected void finishDraw(GL2 gl) {
@@ -63,19 +65,19 @@ public abstract class AbstractBullet {
         wv = new Vec3(rotate[0], rotate[1], rotate[2]);
         q = new Quaternion(rotate[3], rotate[4], rotate[5], rotate[6]);
         q = q.norm();
-        o.addQuaternion(q);
+        o = new Quaternion(Math.acos(q.scal) * 2, q.vec.norm());
         
         // fly
-        pos.x += v.x;
-        pos.y += v.y;
-        pos.z += v.z;
+        pos.x += v.x * dt;
+        pos.y += v.y * dt;
+        pos.z += v.z * dt;
         v.x += a.x * dt;
         v.y += a.y * dt;
         v.z += a.z * dt;
         
         livetime--;
     }
-    
+
     public int getLiveTime() {
         return livetime;
     }
