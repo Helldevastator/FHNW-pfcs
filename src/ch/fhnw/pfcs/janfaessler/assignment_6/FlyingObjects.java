@@ -139,7 +139,7 @@ public class FlyingObjects extends JFrame implements GLEventListener, KeyListene
         double right = viewportWidth;
         double bottom = left * aspect;
         double top = right * aspect;
-        double near = -viewportWidth*2, far = viewportWidth*2;
+        double near = -(viewportWidth), far = viewportWidth*3;
         gl.glMatrixMode(GL2.GL_PROJECTION);
         gl.glLoadIdentity();
         gl.glOrtho(left, right, bottom, top, near, far);

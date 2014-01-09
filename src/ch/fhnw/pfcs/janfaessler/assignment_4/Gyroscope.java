@@ -1,15 +1,12 @@
 package ch.fhnw.pfcs.janfaessler.assignment_4;
 
 import javax.media.opengl.*;
-
 import java.awt.*;
 import java.awt.event.*;
-
 import javax.media.opengl.awt.GLCanvas;
 import javax.media.opengl.fixedfunc.GLLightingFunc;
 import javax.media.opengl.fixedfunc.GLMatrixFunc;
 import javax.swing.JFrame;
-
 import com.jogamp.opengl.util.*;
 import com.jogamp.opengl.util.gl2.*;
 
@@ -43,9 +40,10 @@ public class Gyroscope implements GLEventListener, KeyListener {
 	}
 
 	public static void main(String[] args) {
-		new Gyroscope();
+            Gyroscope gyroscope = new Gyroscope();
 	}
 
+        @Override
 	public void init(GLAutoDrawable drawable) {
 		gl = drawable.getGL().getGL2();
 		gl.glClearColor(0f, 0f, 0f, 1.0f);
@@ -55,6 +53,7 @@ public class Gyroscope implements GLEventListener, KeyListener {
 		gl.glEnable(GLLightingFunc.GL_LIGHT0);
 	}
 
+        @Override
 	public void display(GLAutoDrawable drawable) {
 		gl = drawable.getGL().getGL2();
 		gl.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT);
@@ -64,15 +63,11 @@ public class Gyroscope implements GLEventListener, KeyListener {
 		gl.glEnable(GLLightingFunc.GL_COLOR_MATERIAL);
 		
 		gl.glLoadIdentity();
-                
+
                 gl.glRotated(-90, 1, 0, 0);
 		
 		phi = (phi + omega * dt) % 360;
-		draw();
-
-	}
-	
-	private void draw() {
+                
 		gl.glPushMatrix();
 
 		drawStage(4);
@@ -138,7 +133,7 @@ public class Gyroscope implements GLEventListener, KeyListener {
 	}
 	
 
-
+        @Override
 	public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
 		GL gl0 = drawable.getGL();
 		GL2 gl = gl0.getGL2();
@@ -151,9 +146,7 @@ public class Gyroscope implements GLEventListener, KeyListener {
 		gl.glOrtho(left, right, bottom, top, near, far);
 	}
 
-	public void dispose(GLAutoDrawable drawable) { }
-
-
+	@Override public void dispose(GLAutoDrawable drawable) { }
 
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -182,9 +175,7 @@ public class Gyroscope implements GLEventListener, KeyListener {
 			break;
 		}
 
-	}
-
+        }
 	@Override public void keyReleased(KeyEvent e) { }
 	@Override public void keyTyped(KeyEvent e) { }
-
 }

@@ -63,11 +63,7 @@ public abstract class AbstractBullet {
         wv = new Vec3(rotate[0], rotate[1], rotate[2]);
         q = new Quaternion(rotate[3], rotate[4], rotate[5], rotate[6]);
         q = q.norm();
-        o.scal = Math.acos(q.scal) * 2;
-        Vec3 vec = q.vec.norm();
-        o.vec.x += vec.x;
-        o.vec.y += vec.y;
-        o.vec.z += vec.z;
+        o.addQuaternion(q);
         
         // fly
         pos.x += v.x;
