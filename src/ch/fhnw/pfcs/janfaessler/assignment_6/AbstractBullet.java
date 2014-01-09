@@ -92,9 +92,9 @@ public abstract class AbstractBullet {
             double[] w = {x[0], x[1], x[2]};
             double[] q = {x[3], x[4], x[5], x[6]};
 
-            double w1 = 1 / I[0] * (I[1] - I[2]) * w[1]  * w[2];
-            double w2 = 1 / I[1] * (I[2] - I[0]) * w[2]  * w[0];
-            double w3 = 1 / I[2] * (I[0] - I[1]) * w[0]  * w[1];
+            double w1 = 1.0 / I[0] * (I[1] - I[2]) * w[1]  * w[2];
+            double w2 = 1.0 / I[1] * (I[2] - I[0]) * w[2]  * w[0];
+            double w3 = 1.0 / I[2] * (I[0] - I[1]) * w[0]  * w[1];
 
             double q0 = -1.0 / 2.0 * (q[1] * w[0] + q[2] * w[1] + q[3] * w[2]);
             double q1 = 1.0 / 2.0 * (q[0] * w[0] + q[2] * w[2] - q[3] * w[1]);
